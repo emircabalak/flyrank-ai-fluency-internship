@@ -1,0 +1,20 @@
+:root {
+  --paper: #FAF9F7;
+  --ink: #16181D;
+  --main: #2E4B6B;
+  --accent: #C2410C;
+
+  --font-heading: "Space Grotesk", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --measure: 68ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14161A;
+    --ink: #E9E7E3;
+    --main: #8FB2D6;
+    --accent: #F0834D;
+  }
+}
