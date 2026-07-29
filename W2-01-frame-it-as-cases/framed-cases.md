@@ -111,9 +111,13 @@ most of the work. Politeness and role play did none.
 ## Bio
 
 I am Emir Cabalak. I build machine learning models and then try to break my own results before
-somebody else does. Most of my work so far is on search and analytics data at FlyRank, where I
-spend more time on how a model is evaluated than on which model it is. I am the person on a
-team who asks where the split came from.
+somebody else does. I have worked across fairly different problems: 3D object detection on
+LiDAR where the model reports how unsure it is, industrial anomaly detection, reinforcement
+learning, image processing. Most of it is public, roughly two dozen repositories. I am
+currently interning at FlyRank on search and analytics data, which is where the three cases
+here come from, and it is the newest part of the work rather than the largest. The thread
+through all of it is one question: does this number mean what it looks like it means. I am the
+person on a team who asks where the split came from.
 
 ## Contact and CTA copy
 
