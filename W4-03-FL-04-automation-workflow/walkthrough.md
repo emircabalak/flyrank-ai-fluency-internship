@@ -27,15 +27,47 @@ the checking adversarial.
 
 ## The flow
 
-```mermaid
-flowchart TD
-    A[Source: one paper or docs page] --> B[1 GATHER · NotebookLM<br/>one notebook, one source<br/>out: section outline]
-    B --> C[2 SYNTHESIZE · Claude Project<br/>out: claim ledger, one row per claim<br/>each marked stated / supported / implied]
-    C --> D[3 CRITIQUE · Claude, NEW conversation<br/>source pasted again, ledger audited cold<br/>out: verdicts + NOT CAPTURED list]
-    D --> E[4 FORMAT · same conversation as 3<br/>out: notebook markdown + recall cards]
-    E --> F[HUMAN GATE<br/>spot-check 3 citations against the source]
-    F -->|any citation wrong| C
-    F -->|clean| G[Into the notebook and the deck]
+```
+        SOURCE: one paper or docs page
+                     |
+                     v
+   +-----------------------------------------+
+   | 1  GATHER            NotebookLM         |
+   |    one notebook, one source, no others  |
+   |    out: section outline                 |
+   +-----------------------------------------+
+                     |
+                     v
+   +-----------------------------------------+
+   | 2  SYNTHESIZE        Claude Project     |<--------+
+   |    out: claim ledger, one row per claim |         |
+   |    each marked stated/supported/implied |         |
+   +-----------------------------------------+         |
+                     |                                 |
+                     v                                 |
+   +-----------------------------------------+         |
+   | 3  CRITIQUE          Claude, NEW convo  |         |
+   |    source pasted again, ledger audited  |         |
+   |    cold, as somebody else's work        |         |
+   |    out: verdicts + NOT CAPTURED list    |         |
+   +-----------------------------------------+         |
+                     |                                 |
+                     v                                 |
+   +-----------------------------------------+         |
+   | 4  FORMAT            same convo as 3    |         |
+   |    out: notebook markdown, recall cards |         |
+   +-----------------------------------------+         |
+                     |                                 |
+                     v                                 |
+   +-----------------------------------------+         |
+   |    HUMAN GATE                           |         |
+   |    open 3 citations in the source       |         |
+   +-----------------------------------------+         |
+             |                    |                    |
+   any wrong |                    | clean              |
+             +--------------------|--------------------+
+                                  v
+                    into the notebook and the deck
 ```
 
 Four steps, and the one that earns its place is step 3.
