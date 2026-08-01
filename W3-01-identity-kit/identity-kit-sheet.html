@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Identity kit &middot; Emir Cabalak</title>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Space+Grotesk:wght@500;600&display=swap");
+:root{--paper:#FAF9F7;--ink:#16181D;--main:#2E4B6B;--accent:#C2410C;--rule:#E2DFDA;
+--fh:"Space Grotesk","Segoe UI",Helvetica,Arial,sans-serif;
+--fb:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif;}
+@page{size:1000px 1580px;margin:0}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;padding:44px 52px;width:1000px;background:var(--paper);color:var(--ink);
+font-family:var(--fb);font-size:14px;line-height:1.55;font-variant-numeric:tabular-nums}
+h1{font-family:var(--fh);font-weight:600;font-size:30px;letter-spacing:-.02em;margin:0 0 4px}
+.sub{color:var(--main);margin:0 0 30px;font-size:14px}
+h2{font-family:var(--fh);font-weight:600;font-size:13px;letter-spacing:.09em;
+text-transform:uppercase;color:var(--main);margin:0 0 12px}
+section{padding:22px 0;border-top:1px solid var(--rule)}
+.cols{display:flex;gap:46px}
+.cols>div{flex:1}
+.spec{font-size:12.5px;opacity:.75;margin:2px 0 0}
+.samp-h{font-family:var(--fh);font-weight:600;font-size:26px;letter-spacing:-.02em;margin:8px 0 2px}
+.samp-b{font-family:var(--fb);font-size:15px;margin:6px 0 0;max-width:34ch}
+.swatches{display:flex;gap:14px}
+.sw{flex:1}
+.chip{height:62px;border:1px solid var(--rule);border-radius:4px}
+.nm{font-weight:600;margin-top:7px}
+.hex{font-family:var(--fb);font-size:12.5px;opacity:.8}
+.marks{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+.fav-row{display:flex;gap:14px;align-items:flex-end}
+.cap{font-size:12px;opacity:.7;margin-top:6px}
+blockquote{margin:0;border-left:3px solid var(--accent);padding-left:16px;max-width:74ch}
+blockquote p{margin:0 0 9px}
+.dark{background:#14161A;color:#E9E7E3;border-radius:5px;padding:16px 18px;margin-top:14px}
+.dark .hex{opacity:.85}
+</style>
+</head>
+<body>
+
+<h1>Identity kit</h1>
+<p class="sub">Emir Cabalak &middot; General AI Fluency, Week 3 &middot; CUSTOM-MQX00WJN-0CE9EDFA</p>
+
+<section style="border-top:none;padding-top:0">
+<h2>Type</h2>
+<div class="cols">
+  <div>
+    <strong>Headings: Space Grotesk</strong>
+    <p class="spec">Weights 500 and 600. Free, Google Fonts.</p>
+    <p class="samp-h">I break my own results</p>
+    <p class="spec">Fallback: Segoe UI, Helvetica, Arial, sans-serif</p>
+  </div>
+  <div>
+    <strong>Body: IBM Plex Sans</strong>
+    <p class="spec">Weights 400 and 600. Free, Google Fonts. Drawn for technical documentation.</p>
+    <p class="samp-b">ROC AUC dropped from 0.91 to 0.84 once the leaking pair came out, and 0.84 is the number I report.</p>
+  </div>
+</div>
+<p class="spec" style="margin-top:14px">Two fonts, not three. I wanted IBM Plex Mono for metric
+tables and cut it: <code>font-variant-numeric: tabular-nums</code> on Plex Sans aligns the digits
+without a third download.</p>
+</section>
+
+<section>
+<h2>Palette</h2>
+<div class="swatches">
+  <div class="sw"><div class="chip" style="background:#FAF9F7"></div>
+    <div class="nm">Paper</div><div class="hex">#FAF9F7 &middot; background</div></div>
+  <div class="sw"><div class="chip" style="background:#16181D"></div>
+    <div class="nm">Ink</div><div class="hex">#16181D &middot; all text &middot; 17:1</div></div>
+  <div class="sw"><div class="chip" style="background:#2E4B6B"></div>
+    <div class="nm">Main</div><div class="hex">#2E4B6B &middot; rules, headers &middot; 8.8:1</div></div>
+  <div class="sw"><div class="chip" style="background:#C2410C"></div>
+    <div class="nm">Accent</div><div class="hex">#C2410C &middot; the one CTA &middot; 4.9:1</div></div>
+</div>
+<p class="spec" style="margin-top:12px">Contrast ratios are against paper. All three pass WCAG AA
+for body text. The accent has exactly one job, the single call to action. If it starts appearing
+on subheads it stops meaning "click this".</p>
+<div class="dark">
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#14161A"></div>
+      <div class="nm">Paper</div><div class="hex">#14161A</div></div>
+    <div class="sw"><div class="chip" style="background:#E9E7E3"></div>
+      <div class="nm">Ink</div><div class="hex">#E9E7E3</div></div>
+    <div class="sw"><div class="chip" style="background:#8FB2D6"></div>
+      <div class="nm">Main</div><div class="hex">#8FB2D6</div></div>
+    <div class="sw"><div class="chip" style="background:#F0834D"></div>
+      <div class="nm">Accent</div><div class="hex">#F0834D</div></div>
+  </div>
+  <p class="hex" style="margin:11px 0 0">Dark mode, same four roles lifted to survive a dark
+  background. Lives in <code>tokens.css</code> behind a prefers-color-scheme block.</p>
+</div>
+</section>
+
+<section>
+<h2>Logo and favicon</h2>
+<div class="marks">
+  <div>
+    <svg viewBox="0 0 320 96" width="320" height="96" role="img" aria-label="Emir Cabalak">
+      <rect width="96" height="96" rx="18" fill="#2E4B6B"/>
+      <text x="48" y="48" fill="#FAF9F7" font-family="'Space Grotesk','Segoe UI',Helvetica,Arial,sans-serif"
+            font-size="42" font-weight="600" letter-spacing="-1" text-anchor="middle" dominant-baseline="central">ec</text>
+      <text x="120" y="42" fill="#16181D" font-family="'Space Grotesk','Segoe UI',Helvetica,Arial,sans-serif"
+            font-size="26" font-weight="600" letter-spacing="-0.5">Emir Cabalak</text>
+      <text x="120" y="68" fill="#2E4B6B" font-family="'IBM Plex Sans','Segoe UI',Helvetica,Arial,sans-serif"
+            font-size="14">numbers that hold up</text>
+    </svg>
+    <div class="cap">logo.svg</div>
+  </div>
+  <div>
+    <div class="fav-row">
+      <svg viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="ec">
+        <rect width="64" height="64" rx="12" fill="#2E4B6B"/>
+        <text x="32" y="33" fill="#FAF9F7" font-family="'Space Grotesk','Segoe UI',Helvetica,Arial,sans-serif"
+              font-size="32" font-weight="600" letter-spacing="-1" text-anchor="middle" dominant-baseline="central">ec</text>
+      </svg>
+      <svg viewBox="0 0 64 64" width="32" height="32" role="img" aria-label="ec at 32px">
+        <rect width="64" height="64" rx="12" fill="#2E4B6B"/>
+        <text x="32" y="33" fill="#FAF9F7" font-family="'Space Grotesk','Segoe UI',Helvetica,Arial,sans-serif"
+              font-size="32" font-weight="600" letter-spacing="-1" text-anchor="middle" dominant-baseline="central">ec</text>
+      </svg>
+      <svg viewBox="0 0 64 64" width="16" height="16" role="img" aria-label="ec at 16px">
+        <rect width="64" height="64" rx="12" fill="#2E4B6B"/>
+        <text x="32" y="33" fill="#FAF9F7" font-family="'Space Grotesk','Segoe UI',Helvetica,Arial,sans-serif"
+              font-size="32" font-weight="600" letter-spacing="-1" text-anchor="middle" dominant-baseline="central">ec</text>
+      </svg>
+    </div>
+    <div class="cap">favicon.svg at 64, 32 and 16 pixels</div>
+  </div>
+</div>
+<p class="spec" style="margin-top:14px">Lowercase, because <em>EC</em> in a box reads as a
+corporate badge and this is a person's site. Both are SVG with the same font fallback stack, so
+they render even before the webfont loads.</p>
+</section>
+
+<section>
+<h2>Style note</h2>
+<p class="spec" style="margin-top:0">Standing instruction in my Claude Project, so every build
+inherits it.</p>
+<blockquote>
+<p>Fonts: Space Grotesk for headings, IBM Plex Sans for body. Colors: paper #FAF9F7, ink #16181D,
+main #2E4B6B, accent #C2410C, dark mode variants in tokens.css. Accent is reserved for the single
+call to action.</p>
+<p>Mood: a lab notebook, not a brochure. Plain, quiet, and slightly technical, so the numbers and
+the writing are the loudest thing on the page. Generous white space, one column, no gradients, no
+shadows, no animation.</p>
+</blockquote>
+<p class="spec" style="margin-top:14px">My claim is that my numbers hold up when someone checks
+them. A page with gradients and motion undercuts that before a reader reaches a sentence, because
+it is visibly trying to impress. Quiet is the same claim in another medium.</p>
+</section>
+
+<section>
+<h2>Files</h2>
+<p class="spec" style="margin-top:0">logo.svg &middot; favicon.svg &middot; tokens.css, the palette
+and the font stacks as CSS custom properties, imported by the live site &middot;
+identity-kit.md, the written version of this sheet.</p>
+</section>
+
+</body>
+</html>
