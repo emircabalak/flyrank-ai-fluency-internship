@@ -6,11 +6,14 @@ Emir Cabalak, General AI Fluency track, Week 4
 
 **MCP client:** Claude Code.
 **MCP server:** the browser server, which exposes a real Chromium instance over MCP.
-**Tools used:** `preview_start`, `navigate`, `resize_window`, `javascript_tool`,
-`read_console_messages`, `read_network_requests`.
+**Tools used:** `navigate`, `resize_window`, `javascript_tool`, `read_console_messages`,
+`read_network_requests`, plus `preview_start` for the local runs.
 
-Configuration, `.claude/launch.json` in the repo root, which is how the server is told what to
-run:
+The thing under test is my own site, live at `https://emircabalak.github.io/`. That is
+deliberate. I wanted three tasks I actually needed done, not three demos, and pointing the
+browser at the public URL means anybody can rerun these and get the same numbers.
+
+For the local runs the server is configured in `.claude/launch.json` at the repo root:
 
 ```json
 {
@@ -26,58 +29,53 @@ run:
 }
 ```
 
-The thing under test is my own Week 4 site, the near-blank page from Empty but Live. That is
-deliberate. I wanted three tasks I actually needed done, not three demos.
-
 ## Why these three tasks are impossible in plain chat
 
-Chat can read my HTML and CSS and tell me what it thinks will happen. It cannot run a browser.
-Everything below is a measurement taken from a live rendering engine, and in the first attempt
+Chat can read my HTML and CSS and tell me what it thinks a browser will do. It cannot run one.
+Everything below is a measurement taken from a live rendering engine, and on the first attempt
 one of those measurements came back wrong, which is the whole argument for doing it this way.
 
 ---
 
-## Task 1: start a real server and read back the computed styles
+## Task 1: read the computed styles off the live page
 
-**Tool calls:** `preview_start` then `javascript_tool`.
-
-`preview_start` launched `python -m http.server` on port 8017 and returned:
-
-```
-serverId: b281a6f1-f315-42e5-babe-c1546ccd52ca
-port: 8017
-Server started successfully on port 8017. Opened tab "tab-7" at http://localhost:8017
-```
-
-Then, executed inside the page:
+**Tool calls:** `navigate` then `javascript_tool`.
 
 ```js
 JSON.stringify({
+  url: location.href,
   bg: getComputedStyle(document.body).backgroundColor,
   ink: getComputedStyle(document.body).color,
-  link: getComputedStyle(document.querySelector('footer a')).color,
-  headingFont: getComputedStyle(document.querySelector('h1')).fontFamily
+  accent: getComputedStyle(document.querySelector('.cta a')).color,
+  scripts: document.scripts.length
 })
 ```
 
 Returned:
 
 ```json
-{"bg":"rgb(20, 22, 26)","ink":"rgb(233, 231, 227)","link":"rgb(240, 131, 77)",
- "headingFont":"\"Space Grotesk\", \"Segoe UI\", Helvetica, Arial, sans-serif"}
+{"url":"https://emircabalak.github.io/","bg":"rgb(20, 22, 26)","ink":"rgb(233, 231, 227)",
+ "accent":"rgb(240, 131, 77)","scripts":0}
 ```
 
 `rgb(20,22,26)` is `#14161A`, `rgb(233,231,227)` is `#E9E7E3`, and `rgb(240,131,77)` is
-`#F0834D`. All three are my dark-mode values from the identity kit, which means the
-`prefers-color-scheme` block fired and the browser it is running in is set to dark. I had never
-checked the dark variant against the real engine, only read it.
+`#F0834D`. All three are the dark-mode values from my identity kit, so the
+`prefers-color-scheme` block is firing and the browser it runs in is set to dark. I had never
+checked the dark variant against a real engine, only read it.
+
+`scripts: 0` is the one I care about most. My whole stack argument in Three Roads was that this
+site ships no JavaScript. That is now a measured fact rather than an intention.
 
 **What this caught.** My first attempt at this task pointed the browser at the file directly
-rather than through a server, and the same call returned `bg: rgba(0,0,0,0)`, `link:
-rgb(0,0,238)`, and a 16px claim. Default browser styling. The stylesheet had not loaded at all.
-It was an artifact of how that mode serves local files rather than a bug in my CSS, but I only
-know that because I had a number in front of me instead of an opinion. If I had written "dark
-mode verified" off the first run I would have written something false.
+rather than through a server, and the same call returned `bg: rgba(0,0,0,0)` and
+`link: rgb(0,0,238)`. Default browser styling, no stylesheet. It turned out to be an artifact
+of how that mode serves local files rather than a bug in my CSS, but I only know that because I
+had a number in front of me instead of an impression. If I had written "dark mode verified" off
+the first run I would have written something false.
+
+That false positive was worth more than the pass, because the same failure signature, a page
+serving with no stylesheet, is exactly what later happened for real on GitHub Pages when Jekyll
+ate my `style.css`.
 
 ---
 
@@ -102,47 +100,56 @@ JSON.stringify({
 Returned:
 
 ```json
-{"viewport":"375x812","scrollW":375,"horizontalOverflow":false,"h1":"32px","claim":"18px"}
+{"viewport":"375x812","scrollW":375,"horizontalOverflow":false,"h1":"28px","claim":"18px"}
 ```
 
-`scrollW` equals the viewport width, so nothing overflows sideways, which is the failure mode
-that makes a phone page scroll horizontally and feel broken.
+`scrollW` equals the viewport width, so nothing overflows sideways. That is the failure that
+makes a phone page scroll horizontally and feel broken, and it is invisible on a laptop.
 
-The two font sizes are the ones I actually wanted. My heading is `clamp(2rem, 7vw, 2.75rem)`.
-At 375 pixels, 7vw is 26.25px, below the 32px floor, so the clamp should return 32px. It
-returned 32px. The claim is `clamp(1.125rem, 3.6vw, 1.375rem)`, where 3.6vw is 13.5px, below
-the 18px floor, so it should return 18px. It returned 18px.
+The two font sizes are the ones I wanted. My heading is `clamp(1.75rem, 6vw, 2.5rem)`. At 375
+pixels 6vw is 22.5px, below the 28px floor, so the clamp should return 28px. It returned 28px.
+The claim is `clamp(1.125rem, 3.6vw, 1.375rem)`, where 3.6vw is 13.5px, below the 18px floor,
+so it should return 18px. It returned 18px.
 
-I can compute both of those by hand. Computing them by hand is not the same as knowing the
-browser agrees, and the mobile overflow bug I hit in Week 4 was exactly a case where my
-arithmetic was right and my markup was wrong.
+I can do both of those calculations by hand. Doing them by hand is not the same as knowing the
+browser agrees, and the arithmetic being right is not much comfort when the markup is wrong.
+
+I ran the same check on `split.html`, which carries the widest table on the site, five columns.
+At 375 pixels the table measured 335 wide inside a 335 wide container with no overflow, so the
+table fits without needing to scroll.
 
 ---
 
-## Task 3: check the network and the webfonts
+## Task 3: read the network log and the font loading state
 
-**Tool calls:** `read_console_messages` and `read_network_requests`, then `javascript_tool`.
+**Tool calls:** `read_network_requests` and `read_console_messages`, then `javascript_tool`.
 
 ```
-read_console_messages -> No console logs.
-
 read_network_requests ->
-[B77706AAADF5F95ACE7121CA01A9EB0E] GET http://localhost:8017/ -> 200 OK
-[22772.27]                        GET http://localhost:8017/style.css -> 200 OK
+GET https://emircabalak.github.io/                   -> 200
+GET https://emircabalak.github.io/style.css          -> 200
+GET https://emircabalak.github.io/hero-texture.svg   -> 200
+GET https://emircabalak.github.io/icon-split.svg     -> 200
+GET https://emircabalak.github.io/icon-ladder.svg    -> 200
+
+read_console_messages -> No console logs.
 ```
 
-Zero console messages of any level, so nothing is erroring quietly. Two requests, both 200, and
-no request for anything I did not intend to ship. For a page whose selling point is that it has
-no JavaScript and no dependencies, a network log with exactly two entries is the proof of that
-claim rather than a restatement of it.
+Five requests, all 200, nothing I did not intend to ship, and no request to any third party
+except the font host. Zero console messages of any level, so nothing is failing quietly.
 
-Then the font question, which the network log alone does not answer because `@import` fetches
-happen in a separate pass:
+This is the task that would have caught the Jekyll bug on its own. When `style.css` was
+returning 404 on the live site, this exact call is what showed it, while the GitHub Pages build
+status still said `built` with no error. A green build is not a working site, and the request
+log is the thing that knows the difference.
+
+Then the fonts, which the request log does not answer because `@import` fetches happen in a
+separate pass:
 
 ```js
 JSON.stringify({
-  spaceGroteskAvailable: document.fonts.check("600 32px 'Space Grotesk'"),
-  plexAvailable: document.fonts.check("400 17px 'IBM Plex Sans'"),
+  grotesk: document.fonts.check("600 28px 'Space Grotesk'"),
+  plex: document.fonts.check("400 17px 'IBM Plex Sans'"),
   loaded: [...document.fonts].filter(f => f.status === "loaded").map(f => f.family + " " + f.weight)
 })
 ```
@@ -150,15 +157,14 @@ JSON.stringify({
 Returned:
 
 ```json
-{"spaceGroteskAvailable":true,"plexAvailable":true,
- "loaded":["IBM Plex Sans 400","Space Grotesk 500","Space Grotesk 600"]}
+{"grotesk":true,"plex":true,
+ "loaded":["IBM Plex Sans 400","IBM Plex Sans 600","Space Grotesk 500","Space Grotesk 600"]}
 ```
 
-Three faces loaded, the three the page uses. `IBM Plex Sans 600` shows as unloaded because
-nothing on a near-blank page is bold yet, and the browser only downloads a face when something
-needs it. That is correct behavior and it is also a small trap: when the case pages arrive with
-bold text, that face will load and I should recheck. I would not have known to expect that
-without seeing the list.
+Four faces loaded, exactly the four the site declares. Worth noting that on the earlier
+near-blank version of this page only three came back loaded, because nothing on it was bold yet
+and a browser only downloads a face when something needs it. That is correct behaviour and it
+is a small trap: a font can look fine until the first bold word appears.
 
 ---
 
@@ -166,9 +172,9 @@ without seeing the list.
 
 | Task | Tools | What it produced that chat could not |
 |---|---|---|
-| 1 | `preview_start`, `javascript_tool` | live computed colors from a rendering engine, and a caught false positive |
-| 2 | `resize_window`, `javascript_tool` | real overflow and clamp measurements at 375px |
-| 3 | `read_console_messages`, `read_network_requests`, `javascript_tool` | the actual request log and font load state |
+| 1 | `navigate`, `javascript_tool` | live computed colors and a script count from a real engine, plus a caught false positive |
+| 2 | `resize_window`, `javascript_tool` | real overflow, clamp and table measurements at 375px |
+| 3 | `read_network_requests`, `read_console_messages`, `javascript_tool` | the actual request log and font load state |
 
-All three are reads of a live process. Nothing in this file is a prediction about what a browser
-would do.
+All three are reads of a live process against a public URL. Nothing in this file is a prediction
+about what a browser would do, and all of it can be rerun.
