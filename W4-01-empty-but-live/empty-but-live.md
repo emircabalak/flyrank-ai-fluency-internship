@@ -94,17 +94,21 @@ working site. I now check the actual response code for every file rather than th
 A laptop is not proof. A page can render perfectly from a local file and be broken on the
 internet, which is precisely what happened here.
 
-So I opened the URL on my phone, with wifi off and on mobile data, which rules out anything
-being served from my own machine or cached by my laptop's browser.
+So I opened the URL on my phone, on a different browser and a different operating system from
+the machine that built it. Nothing about that page is being served from my laptop.
 
-What I checked while the device was in my hand:
+What I checked while the device was in my hand, and what the screenshot shows:
 
 - The page loads at all, which is the whole assignment.
-- HTTPS with the padlock. GitHub Pages does this by default and I confirmed rather than assumed.
-- The stylesheet actually applied, since that is the thing that had just been broken.
-- Text wraps instead of overflowing sideways.
-- The favicon shows in the tab.
-- Dark mode. My phone is set to dark, so I saw the dark variant before the light one.
+- The address bar says `emircabalak.github.io`, so it is the public URL and not a local file.
+- The stylesheet actually applied, since that is the thing that had just been broken. The
+  screenshot is the proof: real fonts, my colours, the accent rule down the side of the lead
+  case.
+- Dark mode. My phone is set to dark, so I saw the dark variant before I ever saw the light one.
+- The claim wraps onto three lines and nothing runs off the side, which is what the `clamp()`
+  on that line is for.
+- Chrome on Android no longer draws a padlock, so I checked the certificate separately from the
+  laptop instead: HTTP returns a 301 to HTTPS and the certificate is valid.
 
 ## Claude Project loaded
 
