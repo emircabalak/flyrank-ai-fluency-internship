@@ -22,9 +22,10 @@ The portfolio these assignments build is a separate repo: **[emircabalak.github.
 
 | Card | Deliverable |
 |---|---|
-| Decide Once: Build Your Identity Kit | [identity-kit.md](W3-01-identity-kit/identity-kit.md), [logo.svg](W3-01-identity-kit/logo.svg), [favicon.svg](W3-01-identity-kit/favicon.svg), [tokens.css](W3-01-identity-kit/tokens.css) |
-| Kill your darlings: Curate Your Images | [image-set.md](W3-02-curate-your-images/image-set.md) and the four SVGs beside it |
+| Decide Once: Build Your Identity Kit | [identity-kit.pdf](W3-01-identity-kit/identity-kit.pdf), plus [identity-kit.md](W3-01-identity-kit/identity-kit.md), [logo.svg](W3-01-identity-kit/logo.svg), [favicon.svg](W3-01-identity-kit/favicon.svg), [tokens.css](W3-01-identity-kit/tokens.css) |
+| Kill your darlings: Curate Your Images | [image-set.pdf](W3-02-curate-your-images/image-set.pdf), plus [image-set.md](W3-02-curate-your-images/image-set.md), the four SVGs and the portrait |
 | The Through-Line: Map Content and CTAs | [content-map.md](W3-03-through-line/content-map.md) |
+| Consistency, Not Talent (and Frame, Not Upstage) | [week-3-package.pdf](W3-04-consistency-not-talent/week-3-package.pdf) |
 
 ## Week 4
 

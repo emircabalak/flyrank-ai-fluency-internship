@@ -147,9 +147,13 @@ ask. There is no newsletter, no "let's connect," no contact form, and no social 
 Honest list, so build week is not blocked. Nothing here blocks a first deploy, because every
 item has a text fallback already written.
 
+**Done since this map was written**
+
+- Portrait photo. Shot against a plain wall in daylight, cropped to a circle, live on the about
+  page. It was the first thing off this list.
+
 **Blocking nothing, needed for polish**
 
-- Portrait photo. About page section 1. Placeholder: a text-only About page, which is fine.
 - Three case screenshots. One per case page, section 7. Placeholder: the numbers as an HTML
   table, which is more accessible anyway and is what ships first.
 
