@@ -11,7 +11,7 @@ before this list existed.
 | # | Slot | Page | What it is | Source |
 |---|---|---|---|---|
 | 1 | Hero texture | home | scatter split by a dashed wall | generated, in this folder |
-| 2 | Portrait | about | photograph of me | real photo, to shoot |
+| 2 | Portrait | about | photograph of me | real photo, in this folder and live |
 | 3 | Case 1 icon | home card, case page header | the leaking pair | generated, in this folder |
 | 4 | Case 2 icon | home card, case page header | the split wall | generated, in this folder |
 | 5 | Case 3 icon | home card, case page header | the ladder with one step down | generated, in this folder |
@@ -62,9 +62,10 @@ one: crop to the table and nothing else, no browser chrome, no visible file path
 names, light theme so it sits on paper without a dark rectangle punched into the page, and at
 least 2x pixel density so the digits survive a retina screen.
 
-**Portrait, slot 2.** A real photo. An AI portrait on a page arguing for honest evaluation is a
-joke that writes itself, and people can tell. Plain background, no suit, the same warm-neutral
-tone as the paper color so it does not fight the page.
+**Portrait, slot 2.** A real photo, in this folder as `portrait.jpg` and live on the about page.
+An AI portrait on a page arguing for honest evaluation is a joke that writes itself, and people
+can tell. Plain wall, daylight, one frame, cropped to a circle at 400 by 400 and 20KB. The
+background is close enough to the paper color that it does not fight the page.
 
 ## What I rejected
 
@@ -75,10 +76,11 @@ it makes a specific claim about a workspace that is not mine. It is decoration w
 slot is the most valuable space on the site.
 
 **A generated abstract neural network mesh.** Glowing nodes and connecting lines. I rejected it
-for a more useful reason than taste: I do not build neural networks. The work in these cases is
-gradient boosting and cross-validation design. Putting a neural mesh at the top of the page
-promises something the cases do not deliver, and a reader who came for that leaves disappointed
-by the second paragraph. An image that misdescribes the work is worse than no image.
+for a more useful reason than taste: it misdescribes the three cases the hero sits above. I do
+build neural networks elsewhere, and the about page links to that work, but these cases are
+gradient boosting and cross-validation design. A hero image makes a promise about the page
+underneath it, and a reader who came for deep learning leaves by the second paragraph. An image
+that misdescribes the work is worse than no image.
 
 **A generated portrait.** Killed on sight, for the reason above.
 
@@ -88,10 +90,8 @@ is the opposite of demonstrating it with a case study, so the monogram stayed pl
 
 ## Still to capture
 
-These are the two slots I cannot fill from a text editor, so they are on my list rather than
-in this folder.
+One slot left. The portrait is done and in this folder.
 
-- The portrait. One session, plain wall, daylight, single frame chosen.
 - The three case screenshots. All three come from notebooks that already exist, so this is a
   crop-and-export job rather than new work. Public-safety pass first: no client names, no
   domains, no private queries, no file paths in the frame.
