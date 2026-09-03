@@ -41,4 +41,5 @@ The portfolio these assignments build is a separate repo: **[emircabalak.github.
 | Card | Deliverable |
 |---|---|
 | Explain It Like You Built It | [how-deploying-works.md](W5-05-explain-it-like-you-built-it/how-deploying-works.md) |
+| Design Your Personal Agent (FL-06) | [agent-spec.md](W5-02-FL-06-design-your-agent/agent-spec.md) |
 | Personal Website Live on the FlyRank Domain (PF-04) | [dns-walkthrough.md](W5-04-PF-04-website-live/dns-walkthrough.md), plus the live URL <https://emircabalak.github.io/> |
