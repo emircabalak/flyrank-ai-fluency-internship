@@ -35,3 +35,10 @@ The portfolio these assignments build is a separate repo: **[emircabalak.github.
 | Three Roads: Choose Your Stack with AI | [stack-rationale.md](W4-02-three-roads/stack-rationale.md) |
 | Ship an Automation Workflow v2 (FL-04) | [walkthrough.md](W4-03-FL-04-automation-workflow/walkthrough.md), [workflow-config.md](W4-03-FL-04-automation-workflow/workflow-config.md) |
 | Agent Concepts and MCP Basics (FL-05) | [explainer.md](W4-04-FL-05-agent-concepts-mcp/explainer.md), [mcp-evidence.md](W4-04-FL-05-agent-concepts-mcp/mcp-evidence.md) |
+
+## Week 5
+
+| Card | Deliverable |
+|---|---|
+| Explain It Like You Built It | [how-deploying-works.md](W5-05-explain-it-like-you-built-it/how-deploying-works.md) |
+| Personal Website Live on the FlyRank Domain (PF-04) | [dns-walkthrough.md](W5-04-PF-04-website-live/dns-walkthrough.md), plus the live URL <https://emircabalak.github.io/> |
