@@ -122,6 +122,7 @@ a deliberate call and it is still an image doing very little work for most visit
 I have not thought about whether a five-column table is a good experience on a phone, only that
 it fits.
 
-**The CV and the site disagree.** The CV lists a different email address from the one in the
-site footer. Small, and exactly the kind of thing a careful reader notices and quietly counts
-against you.
+**Two email addresses.** The CV lists one and the site footer lists another. Both are mine and
+both reach me, and I have decided to leave it, but a careful reader will notice two addresses
+and wonder which one is real. Knowing that and keeping it is a choice rather than an oversight,
+which is the only reason it is on this list instead of fixed.
