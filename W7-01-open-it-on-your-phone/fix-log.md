@@ -1,6 +1,6 @@
 # Open It on Your Phone: the fix log
 
-Emir Cabalak, General AI Fluency track, Week 7
+Emir Cabalak, General AI Fluency track, Week 6
 
 **Live URL:** <https://emircabalak.github.io/>
 
@@ -104,6 +104,42 @@ about before it starts arguing, and the four longest paragraphs were split. Noth
 and no number changed. The technical vocabulary stayed, because the reader it is written for
 knows those words.
 
+### 6. The icons were white boxes in dark mode, and only a real phone showed it
+
+Found last, and not by me.
+
+I audited five widths and fixed five things, then took the after-screenshots on an actual phone.
+The case icons were rendering as small white squares against the dark page. Next to a link, they
+read as broken images rather than as icons.
+
+The cause was in the SVGs. Each one carried `<rect width="96" height="96" fill="#FAF9F7"/>`, the
+light paper colour, baked in as a background. On the light theme that disappears into the page.
+On the dark theme it is a white block. The split icon was worse: its dashed divider was
+`#16181D`, the near-black ink colour, which on a near-black background is simply not there.
+
+**Fixed.** The background rectangle is gone from all three, so the page shows through. The
+stroke colours moved to values that clear the 3:1 non-text contrast threshold on both grounds
+rather than only on one:
+
+| Element | Before | After | On light | On dark |
+|---|---|---|---|---|
+| strokes and dots | `#2E4B6B` | `#6E90B5` | 3.16 | 5.45 |
+| the accent element | `#C2410C` | `#E2703A` | 3.02 | 5.70 |
+| the split divider | `#16181D` | `#8A8F98` | 3.09 | 5.57 |
+
+**Why my audit missed it.** I measured geometry: widths, heights, overflow, computed font sizes,
+contrast of text against its background. Every one of those numbers was correct while the icons
+looked broken, because an icon with a white background has perfectly good contrast. It just
+looks wrong.
+
+That is the argument for this assignment in one bug. A headless browser at 375 pixels answers
+"does it fit and can you tap it". It does not answer "does it look like something went wrong",
+and a person glancing at a phone answers that in about a second.
+
+The hero image keeps its light panel deliberately. It has a border, it holds a chart with axis
+labels, and it reads as a figure on paper rather than as a broken element. The small icons had
+no such excuse.
+
 ## The mistake I nearly made while verifying the fixes
 
 After pushing, I remeasured and the footer links still came back at 19 pixels. The HTML had
@@ -127,3 +163,7 @@ are still three dashed rectangles announcing unfinished work.
 **Mobile is now verified, not designed.** I have confirmed that nothing overflows, everything is
 tappable and the type scales. I have not asked whether a five-column table is a good experience
 on a phone, only whether it fits.
+
+**The navigation wraps to two rows on a phone**, with About alone on the second line. Six items
+do not fit across 375 pixels at a comfortable tap size, and I would rather have the wrap than
+shrink the targets I just spent this assignment enlarging.
