@@ -45,3 +45,9 @@ The portfolio these assignments build is a separate repo: **[emircabalak.github.
 | Design Your Personal Agent (FL-06) | [agent-spec.md](W5-02-FL-06-design-your-agent/agent-spec.md) |
 | Build the Agent (FL-07) | [BUILD-LOG.md](W5-03-FL-07-build-the-agent/BUILD-LOG.md), [AGENT.md](W5-03-FL-07-build-the-agent/agent/AGENT.md), [results.md](W5-03-FL-07-build-the-agent/evals/results.md), [case1_pair.md](W5-03-FL-07-build-the-agent/reports/case1_pair.md) |
 | Personal Website Live on the FlyRank Domain (PF-04) | [site-and-hosting.md](W5-04-PF-04-website-live/site-and-hosting.md) and [dns-walkthrough.md](W5-04-PF-04-website-live/dns-walkthrough.md), plus the live URL <https://emircabalak.github.io/> |
+
+## Week 7
+
+| Card | Deliverable |
+|---|---|
+| Open It on Your Phone | [fix-log.md](W7-01-open-it-on-your-phone/fix-log.md), plus the live URL <https://emircabalak.github.io/> |
