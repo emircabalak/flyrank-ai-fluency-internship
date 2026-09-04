@@ -120,6 +120,8 @@ Nothing about the build changes. A custom domain is a pointer, not a migration. 
 `emir.flyrank.ai` is provisioned, Ops adds one CNAME record and I add the domain on GitHub's
 side, and the same files answer at a second name. The old address keeps working.
 
-The full checklist, what a CNAME actually is, and the four things I expect to go wrong are in
-`dns-walkthrough.md` next to this file. I wrote it before I need it on purpose, because the day
-it is granted is a bad day to be learning what a resolver does.
+What a CNAME actually is and what happens between somebody typing the address and my host
+answering is in `dns-walkthrough.md`. The operational version, the step by step for the day
+itself and the four things I expect to go wrong, is in `dns-checklist.md`. I wrote both before I
+need them, because the day a subdomain is granted is a bad day to be learning what a resolver
+does.
